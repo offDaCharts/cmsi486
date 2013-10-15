@@ -1,0 +1,11 @@
+1.
+db.posts.aggregate([{"$unwind":"$comments"},{"$group":{"_id": "$comments.author", "count":{"$sum":1}}}, {"$sort":{"count":-1}},{"$limit":1}])
+
+2.
+db.zips.aggregate([{$match:{$or: [{state:"CA"},{state:"NY"}]}}, {$group:{_id:{city:"$city", state:"$state"}, pop:{$sum:"$pop"}}}, {$match:{pop:{$gt: 25000}}}, {$group:{_id:"", popAvg:{$avg:"$pop"}}}])
+
+3.
+db.grades.aggregate([{$unwind: "$scores"}, {$match: {$or: [{"scores.type": "exam"}, {"scores.type": "homework"}]}}, {$group:{_id:{student_id:"$student_id", class_id:"$class_id"}, studentAvg: {$avg:"$scores.score"}}}, {$group: {_id:"$_id.class_id", avg:{$avg:"$studentAvg"}}}, {$sort: {avg: -1}}])
+
+4.
+db.zips.aggregate([{$project: {first_char: {$substr : ["$city",0,1]}, pop: "$pop",}}, {$match: {first_char: {$regex: /[0-9]/}}}, {$group: {_id:"", tot:{$sum:"$pop"}}}])
