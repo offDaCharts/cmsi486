@@ -1,0 +1,104 @@
+<head>
+  <title>wwwbd</title>
+</head>
+
+<body>
+  {{> navbar}}
+  {{> content}}
+</body>
+
+<template name="navbar">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">WWWBD</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><a class="about" href="#">About</a></li>
+            <li><a class="stuff" href="#">Stuff</a></li>
+            <li><a class="moreStuff" href="#">More Stuff</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="content">
+  <div class="content">
+    {{> hello}}
+    {{> tabs}}
+  </div>
+</template>
+
+<template name="tabs">
+  {{> tabHeaders}}
+  <div class="tab-content content">
+    {{> tabContent}}
+  </div>
+</template>
+
+<template name="tabHeaders">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#wwwbBuy" data-toggle="tab">What Would Warren Buffett Buy</a></li>
+    <li><a href="#wwwbSell" data-toggle="tab">What Would Warren Buffett Sell</a></li>
+    <li><a href="#wwwbHold" data-toggle="tab">What Would Warren Buffett Hold</a></li>
+  </ul>
+
+</template>
+
+<template name="tabContent">
+  <div class="tab-pane row-fluid active" id="wwwbBuy">
+    <h3>Get on that shit!</h3>
+    {{> buys}}
+  </div>
+  <div class="tab-pane row-fluid" id="wwwbSell">
+    <h3>sellsellsellsell!!</h3>
+    {{> sells}}
+  </div>
+  <div class="tab-pane row-fluid" id="wwwbHold">
+    <h3>hang on to</h3>
+    {{> holds}}
+  </div>
+  <div class="tab-pane row-fluid" id="wwwbSay">
+    <h3>blahblahblah</h3>
+    {{> says}}
+  </div>
+</template>
+
+<template name="buys">
+  {{#each posts}}
+    {{> post}}
+  {{/each}}
+</template>
+<template name="sells">
+  {{#each posts}}
+    {{> post}}
+  {{/each}}
+</template>
+<template name="holds">
+  {{#each posts}}
+    {{> post}}
+  {{/each}}
+</template>
+<template name="says">
+  {{#each posts}}
+    {{> post}}
+  {{/each}}
+</template>
+
+<template name="post">
+  <div class="post well">
+    {{text}}
+  </div>
+</template>
+
+<template name="hello">
+  {{greeting}}
+  <!-- <input type="button" value="Click" /> -->
+</template>
