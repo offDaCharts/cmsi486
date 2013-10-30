@@ -1,0 +1,33 @@
+1.
+db.emails.find({"headers.From": "andrew.fastow@enron.com", "headers.To": "jeff.skilling@enron.com"}).count()
+
+2.
+db.emails.aggregate({$project: {from: "$headers.From", to: "$headers.To"}}, {$unwind:"$to"}, {$group: {_id:"$_id", from: {$addToSet:"$from"}, uniqueTo:{$addToSet:"$to"}}}, {$unwind:"$uniqueTo"}, {$unwind:"$from"}, {$group: {_id:{from:"$from", uniqueTo:"$uniqueTo"}, sum:{$sum: 1}}}, {$sort: {sum: -1}}, {$limit: 1})
+
+3.
+db.messages.update({"headers.Message-ID": "<8147308.1075851042335.JavaMail.evans@thyme>"}, {$push: {"headers.To": "mrpotatohead@10gen.com"}})
+
+4.
+see blog
+
+5. 
+b c and d
+
+6.
+b and c
+
+7.
+db.imgaes.find().forEach(function(p){
+  if(db.albums.find({images: p._id}).count()===0) {
+    db.imgaes.remove({_id:p._id})
+  }
+})
+
+8.
+d
+
+9.
+a
+
+10.
+a and b d
