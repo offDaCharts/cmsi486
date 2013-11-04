@@ -81,11 +81,27 @@
     {{> post}}
   {{/each}}
 </template>
+
 <template name="holds">
-  {{#each posts}}
-    {{> post}}
-  {{/each}}
+  <table border="1">
+    <tr>
+      <th>Company</th>
+      <th>Ticker</th>
+      <th>Market Value</th>
+      <th>Change</th>
+      <th>Change %</th>
+      <th>Day High</th>
+      <th>Day Low</th>
+      <th>52 Week High</th>
+      <th>52 Week Low</th>
+    </tr>
+    {{#each holdings}}
+      {{> holding}}
+    {{/each}}
+  </table>
+
 </template>
+
 <template name="says">
   {{#each posts}}
     {{> post}}
@@ -96,6 +112,10 @@
   <div class="post well">
     {{text}}
   </div>
+</template>
+
+<template name="holding">
+  <tr id="{{ticker}}"></tr>
 </template>
 
 <template name="hello">
