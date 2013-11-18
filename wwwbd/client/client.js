@@ -29,9 +29,9 @@ Template.holds.rendered = function() {
   Holdings.find().forEach(function(hold) {
       tickers.push(hold.ticker);
   });
-  
+
   if(tickers.length) {
-    	Meteor.call("getQuote", url+tickers.join(","), function(error, results) {
+      Meteor.call("getQuote", url+tickers.join(","), function(error, results) {
     	    var resultsStr = results.content,
     	        quotes = JSON.parse(resultsStr.substr(resultsStr.indexOf('//')+2).trim());
           quotes.forEach(function(quote, index) {
@@ -54,7 +54,7 @@ Template.holds.rendered = function() {
 }
   
 Template.says.posts = function() {
-  return Blog.find({"type": "say"});
+    return Blog.find({"type": "say"});
 }
 
 Template.hello.events({

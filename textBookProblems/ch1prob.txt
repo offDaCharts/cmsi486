@@ -1,0 +1,30 @@
+CH1:	
+
+ex1.13:
+Give examples of systems in which it may make sense to use traditional file processing instead of a database approach.
+
+-DBMS's should not be used when the application is well-defined and is not expected to change.
+-no multiple user access is required
+-limited storage capacity
+
+Examples:
+  Internal data management in computer aided design tools- well defined app, not expected to change
+
+  Single user applications run locally
+
+ex1.14
+Consider Figure 1.2.
+a. If the name of the ‘CS’ (Computer Science) Department changes to ‘CSSE’ (Computer Science and Software Engineering) Department and the corresponding prefix for the course number also changes, identify the columns in the database that would need to be updated.
+b. Can you restructure the columns in the COURSE, SECTION, and PREREQUISITE tables so that only one column will need to be updated?
+
+a)Columns to be updated:
+	-Student Major
+	-Course department and course_number
+	-section course_number
+	-prerequisite: course_number and prerequisite_number
+
+b)
+-In course: Change course_number to be just the number and add unique id to each course
+-then for section and prereq, the courses will be refered to by the course id
+-that way only the department has to be changed
+
