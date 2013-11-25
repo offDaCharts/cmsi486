@@ -1,0 +1,45 @@
+CH4
+
+4.5:
+Consider the database shown in Figure 1.2, whose schema is shown in Figure 2.1. What are the referential integrity constraints that should hold on the schema? Write appropriate SQL DDL statements to define the database.
+
+create table student
+( Name				varchar(20),
+  Student_number	int,
+  Class				varchar(20),
+  Major				varchar(20),
+  primary key (Student_number)
+ );
+
+create table course
+( Course_name		varchar(20),
+  Course_number		varchar(20),
+  Credit_hours		int,
+  Department 		varchar(20),
+  primary key (Course_number)
+);
+
+create table prerequisite
+( Course_number			int,
+  Prerequisite_number	int,
+  foreign key (Course_number) references course(Course_number),
+  foreign key (Prerequisite_number) references course(Course_number)
+);
+
+create table section
+( Section_identifier	int,
+  Prerequisite_number	int,
+  foreign key (Course_number) references course(Course_number),
+  foreign key (Prerequisite_number) references course(Course_number)
+);
+
+create table grade_report
+( Student_number		int,
+  Section_identifier	int,
+  grade    				char,
+  foreign key (Student_number) references student(Course_number),
+  foreign key (Section_identifier) references section(Section_identifier)
+);
+
+
+

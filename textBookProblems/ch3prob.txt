@@ -1,0 +1,25 @@
+Ch3
+
+3.13:
+Consider the relation CLASS(Course#, Univ_Section#, Instructor_name, Semester, Building_code, Room#, Time_period, Weekdays, Credit_hours). This represents classes taught in a university, with unique Univ_section#s. Identify what you think should be various candidate keys, and write in your own words the conditions or assumptions under which each candidate key would be valid.
+
+Course#- assuming this is unique, containing the number and the department (ie: cmsi486)
+Univ_section#- assuming this is unique
+
+3.16:
+Consider the following relations for a database that keeps track of student enrollment in courses and the books adopted for each course:
+STUDENT(Ssn, Name, Major, Bdate) 
+COURSE(Course#, Cname, Dept) 
+ENROLL(Ssn, Course#, Quarter, Grade) 
+BOOK_ADOPTION(Course#, Quarter, Book_isbn) 
+TEXT(Book_isbn, Book_title, Publisher, Author)
+Specify the foreign keys for this schema, stating any assumptions you make.
+
+Foreign keys in
+Student: none
+Course: none
+Enroll: Ssn
+Book_Adoption: Course#, Book_isbn
+Text: none
+
+

@@ -4,5 +4,15 @@ CH2:
 Think of different users for the database shown in Figure 1.2. What types of applications would each user need? To which user category would each belong, and what type of interface would each need?
 
 User: Student
-Casual user
-GUI: interface
+Type: Casual user
+Interface: GUI interface
+
+User: Dean/Admin
+Type: Admin
+Interface: Command Line (creating an removing classes)
+
+2.15:
+Consider Figure 2.1. In addition to constraints relating the values of columns in one table to columns in another table, there are also constraints that impose restrictions on values in a column or a combination of columns within a table. One such constraint dictates that a column or a group of columns must be unique across all rows in the table. For example, in the STUDENT table, the Student_number column must be unique (to prevent two different students from having the same Student_number). Identify the col- umn or the group of columns in the other tables that must be unique across all rows in the table.
+
+section_identifier must be unique in section table
+course_number must be unique in course table
