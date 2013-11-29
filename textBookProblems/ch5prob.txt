@@ -1,0 +1,39 @@
+CH5
+
+5.4
+Discuss how each of the following constructs is used in SQL, and discuss the various options for each construct. Specify what each construct is useful for.
+a. Nested queries. 
+b. Joined tables and outer joins. 
+c. Aggregate functions and grouping. 
+d. Triggers. 
+e. Assertions and how they differ from triggers.
+f. Views and their updatability. 
+g. Schema change commands.
+
+5.5 Specify the following queries on the database in Figure 3.5 in SQL. Show the query results if each query is applied to the database in Figure 3.6.
+
+basic schema: http://sqlfiddle.com/#!2/87e73
+
+a. For each department whose average employee salary is more than $30,000, retrieve the department name and the number of employees working for that department.
+
+http://sqlfiddle.com/#!2/87e73/39
+
+b. Suppose that we want the number of male employees in each department making more than $30,000, rather than all employees (as in Exercise 5.4a). Can we specify this query in SQL? Why or why not?
+
+http://sqlfiddle.com/#!2/87e73/46
+
+
+
+
+
+5.6 Specify the following queries in SQL on the database schema in Figure 1.2. 
+
+basic schema: http://sqlfiddle.com/#!2/2c545
+
+a. Retrieve the names and major departments of all straight-A students
+(students who have a grade of A in all their courses).
+
+
+
+
+b. Retrieve the names and major departments of all students who do not have a grade of A in any of their courses.

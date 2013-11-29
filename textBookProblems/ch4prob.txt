@@ -43,4 +43,27 @@ create table grade_report
 
 
 
+4.11 Specify the updates of Exercise 3.11 using the SQL update commands.
+
+basic schema built in: http://sqlfiddle.com/#!2/87e73
+
+a. Insert <‘Robert’, ‘F’, ‘Scott’, ‘943775543’, ‘1972-06-21’, ‘2365 Newcastle Rd, Bellaire, TX’, M, 58000, ‘888665555’, 1> into EMPLOYEE.
+
+http://sqlfiddle.com/#!2/3cbbbf/1
+
+b. Insert <‘ProductA’, 4, ‘Bellaire’, 2> into PROJECT. 
+
+
+
+c. Insert <‘Production’, 4, ‘943775543’, ‘2007-10-01’> into DEPARTMENT. 
+d. Insert <‘677678989’, NULL, ‘40.0’> into WORKS_ON. 
+e. Insert<‘453453453’,‘John’,‘M’,‘1990-12-12’,‘spouse’>intoDEPENDENT.
+f.  Delete the WORKS_ON tuples with Essn = ‘333445555’. 
+g. Delete the EMPLOYEE tuple with Ssn = ‘987654321’. 
+h. DeletethePROJECTtuplewithPname=‘ProductX’.
+i. Modify the Mgr_ssn and Mgr_start_date of the DEPARTMENT tuple with Dnumber = 5 to ‘123456789’ and ‘2007-10-01’, respectively.
+j. Modify the Super_ssn attribute of the EMPLOYEE tuple with Ssn = ‘999887777’ to ‘943775543’.
+k. Modify the Hours attribute of the WORKS_ON tuple with Essn = ‘999887777’ and Pno = 10 to ‘5.0’.
+
+
 
