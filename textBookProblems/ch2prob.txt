@@ -1,4 +1,6 @@
 CH2:
+2 problems
+2 parts
 
 2.12: 
 Think of different users for the database shown in Figure 1.2. What types of applications would each user need? To which user category would each belong, and what type of interface would each need?

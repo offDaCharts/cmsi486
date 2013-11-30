@@ -1,6 +1,8 @@
 CH1:	
+2 problems
+3 parts
 
-ex1.13:
+1.13:
 Give examples of systems in which it may make sense to use traditional file processing instead of a database approach.
 
 -DBMS's should not be used when the application is well-defined and is not expected to change.
@@ -12,7 +14,7 @@ Examples:
 
   Single user applications run locally
 
-ex1.14
+1.14
 Consider Figure 1.2.
 a. If the name of the ‘CS’ (Computer Science) Department changes to ‘CSSE’ (Computer Science and Software Engineering) Department and the corresponding prefix for the course number also changes, identify the columns in the database that would need to be updated.
 b. Can you restructure the columns in the COURSE, SECTION, and PREREQUISITE tables so that only one column will need to be updated?

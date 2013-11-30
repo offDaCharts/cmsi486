@@ -1,14 +1,27 @@
 CH5
+//I did a number of problems from this chapter because it included a lot of query practice problems 
+// which I thought was very helpful for practice
+
+5 problems
+18 parts
 
 5.4
 Discuss how each of the following constructs is used in SQL, and discuss the various options for each construct. Specify what each construct is useful for.
 a. Nested queries. 
+    useful for queries that require existing values in the database be fetched and then used in a comparison condition
 b. Joined tables and outer joins. 
+    joined tables are used when information from multiple tables need to be used for a query. It is easier to join these tables together first and then query them for the desired information
 c. Aggregate functions and grouping. 
+    aggregate functions are used to summarize information in tables such as finding the min, max, sum, or average of a certain value in a table
 d. Triggers. 
+    triggers are used to specify certain actions that will be triggered when certain events occur(such as before an insert or update). This creates "active database" behavior
 e. Assertions and how they differ from triggers.
+    conditions declared via an insertion and a check query. This query must be satisfied for all databse entries for the assertion to pass. This varies from triggers because it is not explicitly tied to an event
 f. Views and their updatability. 
+    a view is a single table that is derived from other tables in the database or previously defined views. Becasue a views is a virtual table, its ability to be updated is limited.
 g. Schema change commands.
+    used to alter a schema by adding or dropping tables or adding or deleting collumns in a table. Checks need to be done when altering schemas to ensure it does not become inconsistent
+
 
 5.5 Specify the following queries on the database in Figure 3.5 in SQL. Show the query results if each query is applied to the database in Figure 3.6.
 
@@ -24,16 +37,47 @@ http://sqlfiddle.com/#!2/87e73/46
 
 
 
-
-
 5.6 Specify the following queries in SQL on the database schema in Figure 1.2. 
-
 basic schema: http://sqlfiddle.com/#!2/2c545
 
 a. Retrieve the names and major departments of all straight-A students
 (students who have a grade of A in all their courses).
-
-
-
+http://sqlfiddle.com/#!2/2c545/16
 
 b. Retrieve the names and major departments of all students who do not have a grade of A in any of their courses.
+http://sqlfiddle.com/#!2/2c545/17
+
+
+
+5.7 In SQL, specify the following queries on the database in Figure 3.5 using the concept of nested queries and concepts described in this chapter.
+basic schema: http://sqlfiddle.com/#!2/87e73
+
+a. Retrieve the names of all employees who work in the department that has the employee with the highest salary among all employees.
+http://sqlfiddle.com/#!2/87e73/51
+
+b. Retrieve the names of all employees whose supervisor’s supervisor has ‘888665555’ for Ssn.
+http://sqlfiddle.com/#!2/87e73/65
+
+c. Retrieve the names of employees who make at least $10,000 more than
+the employee who is paid the least in the company.
+http://sqlfiddle.com/#!2/87e73/66
+
+
+
+5.8 Specify the following views in SQL on the COMPANY database schema shown in Figure 3.5.
+
+a. A view that has the department name, manager name, and manager salary for every department.
+    http://sqlfiddle.com/#!2/6c1fa/1
+
+b. A view that has the employee name, supervisor name, and employee salary for each employee who works in the ‘Research’ department.
+    http://sqlfiddle.com/#!2/191b6/1
+
+c. A view that has the project name, controlling department name, number of employees, and total hours worked per week on the project for each project.
+    http://sqlfiddle.com/#!2/a83384/1
+
+d. A view that has the project name, controlling department name, number of employees, and total hours worked per week on the project for each project with more than one employee working on it.
+    http://sqlfiddle.com/#!2/a673ad/1
+
+
+
+

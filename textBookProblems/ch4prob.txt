@@ -1,4 +1,6 @@
 CH4
+2 problems
+12 parts
 
 4.5:
 Consider the database shown in Figure 1.2, whose schema is shown in Figure 2.1. What are the referential integrity constraints that should hold on the schema? Write appropriate SQL DDL statements to define the database.
@@ -36,7 +38,7 @@ create table section
 create table grade_report
 ( Student_number		int,
   Section_identifier	int,
-  grade    				char,
+  grade    				char(1),
   foreign key (Student_number) references student(Course_number),
   foreign key (Section_identifier) references section(Section_identifier)
 );

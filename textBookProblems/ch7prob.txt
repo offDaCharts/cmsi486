@@ -1,0 +1,18 @@
+CH7
+er-models
+1 problems
+
+
+7.3 Define the following terms: entity, attribute, attribute value, relationship instance, composite attribute, multivalued attribute, derived attribute, complex attribute, key attribute, and value set (domain).
+
+entity: represents and real thing in the world
+attribute: the porperty that describes and entity. each entity had attributes
+    ex: student entity described by name, age, address, gpa
+attribute value: the specific value of each attribtue (specific name or age value)
+relationship instance: 
+composite attribute:
+multivalued attribute:
+derived attribute:
+complex attribute:
+key attribute:
+value set: 
