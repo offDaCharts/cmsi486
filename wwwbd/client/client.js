@@ -1,3 +1,5 @@
+var actions = ["buy", "sell", "say"];
+
 Deps.autorun(function () {
     Meteor.subscribe("blog");
     Meteor.subscribe("holdings");
@@ -5,32 +7,46 @@ Deps.autorun(function () {
 });
 
 Template.hello.greeting = function () {
-  return "Welcome to wwwbd.";
+    return "Welcome to wwwbd.";
 };
   
-Template.buys.posts = function() {
-  return Blog.find({"type": "buy"});
+Template.buy.posts = function() {
+    return Blog.find({"type": "buy"});
 }
 
-Template.sells.posts = function() {
-  return Blog.find({"type": "sell"});
+Template.sell.posts = function() {
+    return Blog.find({"type": "sell"});
 }
 
-Template.holds.holdings = function() {
-  return Holdings.find();
+Template.hold.holdings = function() {
+    return Holdings.find();
 }
 
-Template.createPost.rendered = function() {
-  var tabType = $(".tab.active").attr("val");
-  $("#wwwb_" + tabType).find("#postLabel").text("What would Warren Buffet "+tabType+"?")
-}
+actions.forEach(function(tabType) {
+    Template[tabType].rendered  = function() {
+        var $container = $("#wwwb_" + tabType);
+        $container.find("#postLabel").text("What would Warren Buffet "+tabType+"?");
 
-Template.holds.rendered = function() {
+        $container.find("#submitPost").unbind();
+        $container.find("#submitPost").click(function () {
+            Meteor.call("createPost", {
+                type: tabType,
+                text: $("#postInput").val()
+            });
+        }); 
+
+        $container.find("#postInput").empty();
+    };
+});
+
+Template.hold.rendered = function() {
     //var result = Holdings.aggregate({$group: {_id:"", tickers: {$push: "$ticker"}}}),
     //    tickers = results[0].tickers;
     //should be using aggregate functions but minimongo doesn't support it
     var tickers = [],
         url = "https://www.google.com/finance/info?infotype=infoquoteall&q=";
+
+    $("#wwwb_hold").find("#postLabel").text("What would Warren Buffet hold?");
 
     Holdings.find().forEach(function(hold) {
         tickers.push(hold.ticker);
@@ -59,7 +75,7 @@ Template.holds.rendered = function() {
     }
 }
   
-Template.says.posts = function() {
+Template.say.posts = function() {
     return Blog.find({"type": "say"});
 }
 

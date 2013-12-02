@@ -55,38 +55,38 @@
 <template name="tabContent">
   <div class="tab-pane row-fluid active" id="wwwb_buy">
     <h3>Get on that shit!</h3>
-    {{> buys}}
+    {{> buy}}
     {{> createPost}}
   </div>
   <div class="tab-pane row-fluid" id="wwwb_sell">
     <h3>sellsellsellsell!!</h3>
-    {{> sells}}
+    {{> sell}}
     {{> createPost}}
   </div>
   <div class="tab-pane row-fluid" id="wwwb_hold">
     <h3>hang on to</h3>
-    {{> holds}}
+    {{> hold}}
     {{> createPost}}
   </div>
   <div class="tab-pane row-fluid" id="wwwb_say">
     <h3>blahblahblah</h3>
-    {{> says}}
+    {{> say}}
     {{> createPost}}
   </div>
 </template>
 
-<template name="buys">
+<template name="buy">
   {{#each posts}}
     {{> post}}
   {{/each}}
 </template>
-<template name="sells">
+<template name="sell">
   {{#each posts}}
     {{> post}}
   {{/each}}
 </template>
 
-<template name="holds">
+<template name="hold">
   <table border="1">
     <tr>
       <th>Company</th>
@@ -106,7 +106,7 @@
 
 </template>
 
-<template name="says">
+<template name="say">
   {{#each posts}}
     {{> post}}
   {{/each}}
@@ -117,9 +117,9 @@
     <fieldset>
       <legend>Create Post</legend>
       <label id="postLabel"></label>
-      <input type="text" placeholder="Type something…">
+      <textarea rows="10" cols="100" id="postInput" placeholder="Type something…"/>
       <span class="help-block">Example block-level help text here.</span>
-      <button type="submit" class="btn">Submit</button>
+      <button type="submit" class="btn" id="submitPost">Post</button>
     </fieldset>
   </form>
 </template>
