@@ -98,6 +98,7 @@
       <th>Day Low</th>
       <th>52 Week High</th>
       <th>52 Week Low</th>
+      <th></th>
     </tr>
     {{#each holdings}}
       {{> holding}}
@@ -127,7 +128,7 @@
 <template name="post">
   <div class="post well">
     {{text}}
-    <a class="btn btn-danger btn-small pull-right deleteButton" id={{_id}}>
+    <a class="btn btn-danger btn-small pull-right deletePostButton" id={{_id}}>
       <i class="icon-white icon-remove"></i>
     </a>
   </div>

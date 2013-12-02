@@ -43,15 +43,17 @@ actions.forEach(function(tabType) {
 Template.hold.rendered = function() {
     //var result = Holdings.aggregate({$group: {_id:"", tickers: {$push: "$ticker"}}}),
     //    tickers = results[0].tickers;
-    //should be using aggregate functions but minimongo doesn't support it
+    //cold use aggregate functions but meteor's minimongo doesn't support it
     var $container = $("#wwwb_hold"),
         tickers = [],
+        ids = {},
         url = "https://www.google.com/finance/info?infotype=infoquoteall&q=";
 
     $("#wwwb_hold").find("#postLabel").text("What would Warren Buffet hold?");
 
     Holdings.find().forEach(function(hold) {
         tickers.push(hold.ticker);
+        ids[hold.ticker] = hold._id;
     });
 
     if(tickers.length) {
@@ -59,6 +61,11 @@ Template.hold.rendered = function() {
       	    var resultsStr = results.content,
       	        quotes = JSON.parse(resultsStr.substr(resultsStr.indexOf('//')+2).trim());
             quotes.forEach(function(quote, index) {
+                var $deleteButton = $("<a></a>")
+                        .addClass("btn btn-danger btn-small deleteHoldButton")
+                        .append($("<i></i>")
+                            .addClass("icon-white icon-remove")
+                );
                 $("#" + tickers[index])
                     .empty()
                     .append("<td>" + quote.name + "</td>")
@@ -70,6 +77,16 @@ Template.hold.rendered = function() {
                     .append("<td>" + quote.lo + "</td>")
                     .append("<td>" + quote.hi52 + "</td>")
                     .append("<td>" + quote.lo52 + "</td>")
+                    .append($("<td></td>")
+                        .append($deleteButton
+                            .click(function() {
+                                console.log(ids[tickers[index]]);
+                                Meteor.call("removeHolding", {
+                                    _id: ids[tickers[index]]
+                                });
+                            })
+                        )
+                    )
             
             })
 
@@ -94,7 +111,7 @@ Template.say.posts = function() {
 }
 
 Template.post.rendered = function() {
-    $(".deleteButton")
+    $(".deletePostButton")
         .unbind()
         .click(function() {
             Meteor.call("deletePost", {
