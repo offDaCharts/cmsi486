@@ -27,15 +27,16 @@ actions.forEach(function(tabType) {
         var $container = $("#wwwb_" + tabType);
         $container.find("#postLabel").text("What would Warren Buffet "+tabType+"?");
 
-        $container.find("#submitPost").unbind();
-        $container.find("#submitPost").click(function () {
-            Meteor.call("createPost", {
-                type: tabType,
-                text: $("#postInput").val()
-            });
-        }); 
+        $container.find("#submitPost")
+            .unbind()
+            .click(function () {
+                Meteor.call("createPost", {
+                    type: tabType,
+                    text: $container.find("#postInput").val()
+                });
+                $container.find("#postInput").val("");
+            }); 
 
-        $container.find("#postInput").empty();
     };
 });
 
@@ -43,7 +44,8 @@ Template.hold.rendered = function() {
     //var result = Holdings.aggregate({$group: {_id:"", tickers: {$push: "$ticker"}}}),
     //    tickers = results[0].tickers;
     //should be using aggregate functions but minimongo doesn't support it
-    var tickers = [],
+    var $container = $("#wwwb_hold"),
+        tickers = [],
         url = "https://www.google.com/finance/info?infotype=infoquoteall&q=";
 
     $("#wwwb_hold").find("#postLabel").text("What would Warren Buffet hold?");
@@ -73,16 +75,35 @@ Template.hold.rendered = function() {
 
       	});
     }
+
+    $container.find("#postLabel").text("What would Warren Buffet hold?");
+
+    $container.find("#submitPost")
+        .unbind()
+        .click(function () {
+            Meteor.call("addHolding", {
+                ticker: $container.find("#postInput").val()
+            });
+            $container.find("#postInput").val("");
+        }); 
+
 }
   
 Template.say.posts = function() {
     return Blog.find({"type": "say"});
 }
 
-Template.hello.events({
-  'click input' : function () {
-    // template data, if any, is available in 'this'
-    if (typeof console !== 'undefined')
-      console.log("You pressed the button");
-  }
-});
+Template.post.rendered = function() {
+    $(".deleteButton")
+        .unbind()
+        .click(function() {
+            Meteor.call("deletePost", {
+                _id: $(this).attr("id")
+            });
+        });
+}
+
+
+
+
+

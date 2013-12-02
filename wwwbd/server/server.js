@@ -1,10 +1,19 @@
 Meteor.startup(function () {
     Meteor.methods({
         createPost: function (params) {
-            console.log(1);
-            console.log(params.type);
-            console.log(params.text);
             return Blog.insert(params);
+        },
+
+        deletePost: function (params) {
+            return Blog.remove(params);
+        },
+
+        addHolding: function (params) {
+            return Holdings.insert(params);
+        },
+
+        removeHolding: function (params) {
+            return Holdings.remove(params);
         },
 
         getQuote: function (url) {
