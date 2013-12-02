@@ -1,0 +1,7 @@
+CH11
+object and object-relational databases
+problems 1
+
+11.1 What are the origins of the object-oriented approach?
+    Object-oriented databses are derived from object oriented programming languages like smalltalk and c where objects are defined and created but then are only transient object that only exist during program execution. Object-oriented databases make these objects persistent. Instance variables are used to define the the internal state of an object and can even give the object different functions or behaviors that can be performed on it.
+

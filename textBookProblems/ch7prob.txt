@@ -1,18 +1,72 @@
 CH7
 er-models
-1 problems
+2 problems
+7 parts
 
 
 7.3 Define the following terms: entity, attribute, attribute value, relationship instance, composite attribute, multivalued attribute, derived attribute, complex attribute, key attribute, and value set (domain).
 
 entity: represents and real thing in the world
+
 attribute: the porperty that describes and entity. each entity had attributes
     ex: student entity described by name, age, address, gpa
+
 attribute value: the specific value of each attribtue (specific name or age value)
-relationship instance: 
-composite attribute:
-multivalued attribute:
-derived attribute:
-complex attribute:
-key attribute:
-value set: 
+
+relationship instance: an association of entities from each given entity type
+
+composite attribute: can be divided into smaller sub attributes 
+    ex: name divided into first, middle and last
+
+multivalued attribute: an attribute that can have a different number of values to describe it
+    ex: such as the color or colors of a car
+
+derived attribute: an attribute that is not stored but can be determined from a stored value
+    ex: like the age of a person being derived from the stored birthdate
+
+complex attribute: attributes that can be multivalued and composite
+    ex: a person having multiple jobs each with multiple work phone numbers
+
+key attribute: attribute that has a distinct value for each entity in the set
+
+value set: set of values that an attribute, like a list of values to choose from
+
+
+
+7.23 Consider the ER diagram shown in Figure 7.21 for part of a BANK database. Each bank can have multiple branches, and each branch can have multiple accounts and loans.
+
+a. List the strong (nonweak) entity types in the ER diagram. 
+    bank, account, loan, customer 
+
+b. Is there a weak entity type? If so, give its name, partial key, and identifying
+relationship.
+    weak entity type: bank_branch
+    partial key: branch_no
+    identifying relationship: branches
+
+c. What constraints do the partial key and the identifying relationship of the weak entity type specify in this diagram?
+    a bank_branch can not exist without an associated bank
+
+d. List the names of all relationship types, and specify the (min, max) con- straint on each participation of an entity type in a relationship type. Justify your choices.
+    branches- bank:bank_branch, 1:N
+    accts- bank_branch:account, 1:N
+    loans- bank_branch:loan, 1:N
+    a_c- acount:customer, N:M
+    l_c- loan:customer, N:M
+
+e. List concisely the user requirements that led to this ER schema design.
+    requirements:
+        a bank entity that can be related to many bank branches where each branch can have many accounts and loans to customers. each customer can have a number of loans and accounts. each loan and account must be associated with a customer
+
+f. Suppose that every customer must have at least one account but is restricted to at most two loans at a time, and that a bank branch cannot have more than 1,000 loans. How does this show up on the (min, max) constraints?
+    a_c-customer to accounts: (1,N)
+    l_c-customer to loans: (0,2)
+    loans-bank_branch to loan: (0,1000)
+
+
+
+
+
+
+
+

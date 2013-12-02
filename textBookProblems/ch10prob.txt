@@ -1,0 +1,87 @@
+CH10
+practical database design and use of UML diagrams
+
+prolbems 4
+parts 8
+
+
+10.1 What are the six phases of database design? Discuss each phase.
+requirements collections and analysis-
+    analyze the user requirements and user expectations as to how the database will perform
+conceptual databse design-
+    examine the data requirements from phase 1 and design a schema to fit these requirements-needs to be done before choosing an dbms so the specific dbms does not effect the conceptual design.  This is done in parallel with the application design-producing high lecel specifications for the requirements in phase 1
+choice of DBMS-
+    choose dbms from a technical and economic perspective.
+    factors to consider include:
+        type of dbms (relational, obj-relational, object...)
+        storage structure
+        user interfaces
+        software acquisition cost
+        maintenance cost
+        hardware acquisition cost
+data model mapping (logical design)-
+    create a scheme to represent data. implemented from the design from phase 2
+physical design- 
+    choose specific storage structures and access paths to maximize performance of response time, space utilization, and transaction through put
+system implementation and tuning-
+    create database schemas and empty database files.  data can then be loaded using conversion routines to convert from how the data was previously stored
+
+10.8 Compare and contrast the two main approaches to conceptual schema design.
+Centralized (or one shot) schema design approach
+    requirements for different applications and users are merged into single set of requirements before design
+    if there are many users or applications, combining these requiremnts can be time consuming
+
+View integration approach
+    requirements are not merged
+    a view/schema is designed for each set of requirements
+        for each application/user group
+    then the views are integrated together into one gloabl schema
+
+10.23 A possible DDL corresponding to Figure 3.1 follows:
+CREATE TABLE STUDENT ( 
+    Name VARCHAR(30) NOT NULL,
+    Ssn CHAR(9) PRIMARY KEY,
+    Home_phone  VARCHAR(14), 
+    Address    VARCHAR(40), 
+    Office_phone   VARCHAR(14), 
+    Age    INT, 
+    Gpa    DECIMAL(4,3)
+);
+
+Discuss the following detailed design decisions:
+a. The choice of requiring Name to be NON NULL 
+    every student must have a name so it cannot be left null
+    even if it's not a primary key it is a way that the entity is identified
+
+b. Selection of Ssn as the PRIMARY KEY 
+    garunteed to be unique and for every student to have one
+
+c. Choice of field sizes and precision 
+    ssn size exactly 9-garunteed to be 9 digits
+    phone number size 14 to account for the preceding 1, 10 digits and 3 dashes
+    address size 40 to leave room for number, street, etc
+    name size 30 intended to be sufficiently large
+    gpa: precision of 4 digits with a scale of 3
+
+d. Any modification of the fields defined in this database 
+    the ssn number should actually be size 11 because the ssn's are being entered in with 2 dashes
+    in figure 3.1 the gpa is only being shown with 3 percision digits 
+
+e. Any constraints on individual fields
+    ssn must be exactly 9 characters
+    age must be an integer, not decimals
+
+10.24 What naming conventions can you develop to help identify foreign keys more efficiently?
+    the foreign key can be the same name and the primary field of the referenced table.  Furthermore, UML based design tools such as rational rose can be used to help create and identify keys in diagrams and schemas
+
+
+
+
+
+
+
+
+
+
+
+

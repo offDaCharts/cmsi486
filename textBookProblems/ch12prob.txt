@@ -1,0 +1,14 @@
+CH12
+XML
+
+
+12.1 What are the differences between structured, semistructured, and unstructured data?
+    Structured-
+    Semistructure-
+    Unstructured-
+
+
+
+
+
+12.2 Under which of the categories in 12.1 do XML documents fall? What about self-describing data?
