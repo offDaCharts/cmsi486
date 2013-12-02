@@ -20,37 +20,46 @@ Template.holds.holdings = function() {
   return Holdings.find();
 }
 
+// Template.createPost.action = function () {
+//   return "buy";
+// }
+
+Template.createPost.rendered = function() {
+  $("#postLabel").text("What would Warren Buffet "+$(".tab.active").attr("val")+"?")
+}
+
 Template.holds.rendered = function() {
-  //var result = Holdings.aggregate({$group: {_id:"", tickers: {$push: "$ticker"}}}),
-  //    tickers = results[0].tickers;
-  var tickers = [],
-      url = "https://www.google.com/finance/info?infotype=infoquoteall&q=";
+    //var result = Holdings.aggregate({$group: {_id:"", tickers: {$push: "$ticker"}}}),
+    //    tickers = results[0].tickers;
+    //should be using aggregate functions but minimongo doesn't support it
+    var tickers = [],
+        url = "https://www.google.com/finance/info?infotype=infoquoteall&q=";
 
-  Holdings.find().forEach(function(hold) {
-      tickers.push(hold.ticker);
-  });
+    Holdings.find().forEach(function(hold) {
+        tickers.push(hold.ticker);
+    });
 
-  if(tickers.length) {
-      Meteor.call("getQuote", url+tickers.join(","), function(error, results) {
-    	    var resultsStr = results.content,
-    	        quotes = JSON.parse(resultsStr.substr(resultsStr.indexOf('//')+2).trim());
-          quotes.forEach(function(quote, index) {
-              $("#" + tickers[index])
-                  .empty()
-                  .append("<td>" + quote.name + "</td>")
-                  .append("<td>" + quote.t + "</td>")
-                  .append("<td>" + quote.l + "</td>")
-                  .append("<td>" + quote.c + "</td>")
-                  .append("<td>" + quote.cp + "</td>")
-                  .append("<td>" + quote.hi + "</td>")
-                  .append("<td>" + quote.lo + "</td>")
-                  .append("<td>" + quote.hi52 + "</td>")
-                  .append("<td>" + quote.lo52 + "</td>")
-          
-          })
+    if(tickers.length) {
+        Meteor.call("getQuote", url+tickers.join(","), function(error, results) {
+      	    var resultsStr = results.content,
+      	        quotes = JSON.parse(resultsStr.substr(resultsStr.indexOf('//')+2).trim());
+            quotes.forEach(function(quote, index) {
+                $("#" + tickers[index])
+                    .empty()
+                    .append("<td>" + quote.name + "</td>")
+                    .append("<td>" + quote.t + "</td>")
+                    .append("<td>" + quote.l + "</td>")
+                    .append("<td>" + quote.c + "</td>")
+                    .append("<td>" + quote.cp + "</td>")
+                    .append("<td>" + quote.hi + "</td>")
+                    .append("<td>" + quote.lo + "</td>")
+                    .append("<td>" + quote.hi52 + "</td>")
+                    .append("<td>" + quote.lo52 + "</td>")
+            
+            })
 
-    	});
-  }
+      	});
+    }
 }
   
 Template.says.posts = function() {

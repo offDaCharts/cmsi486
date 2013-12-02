@@ -45,10 +45,10 @@
 
 <template name="tabHeaders">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#wwwbBuy" data-toggle="tab">What Would Warren Buffett Buy</a></li>
-    <li><a href="#wwwbSell" data-toggle="tab">What Would Warren Buffett Sell</a></li>
-    <li><a href="#wwwbHold" data-toggle="tab">What Would Warren Buffett Hold</a></li>
-    <li><a href="#wwwbSay" data-toggle="tab">What Would Warren Buffett Say</a></li>
+    <li class="active tab" val="buy"><a href="#wwwbBuy" data-toggle="tab">What Would Warren Buffett Buy</a></li>
+    <li class="tab" val="sell"><a href="#wwwbSell" data-toggle="tab">What Would Warren Buffett Sell</a></li>
+    <li class="tab" val="hold"><a href="#wwwbHold" data-toggle="tab">What Would Warren Buffett Hold</a></li>
+    <li class="tab" val="say"><a href="#wwwbSay" data-toggle="tab">What Would Warren Buffett Say</a></li>
   </ul>
 </template>
 
@@ -56,18 +56,22 @@
   <div class="tab-pane row-fluid active" id="wwwbBuy">
     <h3>Get on that shit!</h3>
     {{> buys}}
+    {{> createPost}}
   </div>
   <div class="tab-pane row-fluid" id="wwwbSell">
     <h3>sellsellsellsell!!</h3>
     {{> sells}}
+    {{> createPost}}
   </div>
   <div class="tab-pane row-fluid" id="wwwbHold">
     <h3>hang on to</h3>
     {{> holds}}
+    {{> createPost}}
   </div>
   <div class="tab-pane row-fluid" id="wwwbSay">
     <h3>blahblahblah</h3>
     {{> says}}
+    {{> createPost}}
   </div>
 </template>
 
@@ -106,6 +110,18 @@
   {{#each posts}}
     {{> post}}
   {{/each}}
+</template>
+
+<template name="createPost">
+  <form>
+    <fieldset>
+      <legend>Create Post</legend>
+      <label id="postLabel"></label>
+      <input type="text" placeholder="Type something…">
+      <span class="help-block">Example block-level help text here.</span>
+      <button type="submit" class="btn">Submit</button>
+    </fieldset>
+  </form>
 </template>
 
 <template name="post">
