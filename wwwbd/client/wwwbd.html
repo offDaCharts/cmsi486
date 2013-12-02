@@ -45,30 +45,30 @@
 
 <template name="tabHeaders">
   <ul class="nav nav-tabs">
-    <li class="active tab" val="buy"><a href="#wwwbBuy" data-toggle="tab">What Would Warren Buffett Buy</a></li>
-    <li class="tab" val="sell"><a href="#wwwbSell" data-toggle="tab">What Would Warren Buffett Sell</a></li>
-    <li class="tab" val="hold"><a href="#wwwbHold" data-toggle="tab">What Would Warren Buffett Hold</a></li>
-    <li class="tab" val="say"><a href="#wwwbSay" data-toggle="tab">What Would Warren Buffett Say</a></li>
+    <li class="active tab" val="buy"><a href="#wwwb_buy" data-toggle="tab">What Would Warren Buffett Buy</a></li>
+    <li class="tab" val="sell"><a href="#wwwb_sell" data-toggle="tab">What Would Warren Buffett Sell</a></li>
+    <li class="tab" val="hold"><a href="#wwwb_hold" data-toggle="tab">What Would Warren Buffett Hold</a></li>
+    <li class="tab" val="say"><a href="#wwwb_say" data-toggle="tab">What Would Warren Buffett Say</a></li>
   </ul>
 </template>
 
 <template name="tabContent">
-  <div class="tab-pane row-fluid active" id="wwwbBuy">
+  <div class="tab-pane row-fluid active" id="wwwb_buy">
     <h3>Get on that shit!</h3>
     {{> buys}}
     {{> createPost}}
   </div>
-  <div class="tab-pane row-fluid" id="wwwbSell">
+  <div class="tab-pane row-fluid" id="wwwb_sell">
     <h3>sellsellsellsell!!</h3>
     {{> sells}}
     {{> createPost}}
   </div>
-  <div class="tab-pane row-fluid" id="wwwbHold">
+  <div class="tab-pane row-fluid" id="wwwb_hold">
     <h3>hang on to</h3>
     {{> holds}}
     {{> createPost}}
   </div>
-  <div class="tab-pane row-fluid" id="wwwbSay">
+  <div class="tab-pane row-fluid" id="wwwb_say">
     <h3>blahblahblah</h3>
     {{> says}}
     {{> createPost}}

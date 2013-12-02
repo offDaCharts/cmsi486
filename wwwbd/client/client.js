@@ -20,12 +20,9 @@ Template.holds.holdings = function() {
   return Holdings.find();
 }
 
-// Template.createPost.action = function () {
-//   return "buy";
-// }
-
 Template.createPost.rendered = function() {
-  $("#postLabel").text("What would Warren Buffet "+$(".tab.active").attr("val")+"?")
+  var tabType = $(".tab.active").attr("val");
+  $("#wwwb_" + tabType).find("#postLabel").text("What would Warren Buffet "+tabType+"?")
 }
 
 Template.holds.rendered = function() {
