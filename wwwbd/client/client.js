@@ -9,20 +9,16 @@ Deps.autorun(function () {
 Template.hello.greeting = function () {
     return "Welcome to wwwbd.";
 };
-  
-Template.buy.posts = function() {
-    return Blog.find({"type": "buy"});
-}
-
-Template.sell.posts = function() {
-    return Blog.find({"type": "sell"});
-}
 
 Template.hold.holdings = function() {
     return Holdings.find();
 }
 
 actions.forEach(function(tabType) {
+    Template[tabType].posts = function() {
+        return Blog.find({"type": tabType}, {sort: {timeStamp: -1} });
+    }
+
     Template[tabType].rendered  = function() {
         var $container = $("#wwwb_" + tabType);
         $container.find("#postLabel").text("What would Warren Buffet "+tabType+"?");
@@ -32,7 +28,8 @@ actions.forEach(function(tabType) {
             .click(function () {
                 Meteor.call("createPost", {
                     type: tabType,
-                    text: $container.find("#postInput").val()
+                    text: $container.find("#postInput").val(),
+                    timeStamp: new Date().getTime()
                 });
                 $container.find("#postInput").val("");
             }); 
@@ -41,18 +38,20 @@ actions.forEach(function(tabType) {
 });
 
 Template.hold.rendered = function() {
-    //var result = Holdings.aggregate({$group: {_id:"", tickers: {$push: "$ticker"}}}),
-    //    tickers = results[0].tickers;
-    //cold use aggregate functions but meteor's minimongo doesn't support it
     var $container = $("#wwwb_hold"),
         tickers = [],
         ids = {},
+        position = [];
         url = "https://www.google.com/finance/info?infotype=infoquoteall&q=";
 
     $("#wwwb_hold").find("#postLabel").text("What would Warren Buffet hold?");
 
+    //var result = Holdings.aggregate({$group: {_id:"", tickers: {$push: "$ticker"}}}),
+    //    tickers = results[0].tickers;
+    //cold use aggregate functions but meteor's minimongo doesn't support it
     Holdings.find().forEach(function(hold) {
         tickers.push(hold.ticker);
+        position.push(hold.position);
         ids[hold.ticker] = hold._id;
     });
 
@@ -77,6 +76,8 @@ Template.hold.rendered = function() {
                     .append("<td>" + quote.lo + "</td>")
                     .append("<td>" + quote.hi52 + "</td>")
                     .append("<td>" + quote.lo52 + "</td>")
+                    .append("<td>" + position[index] + "</td>")
+                    .append("<td>" + (+(quote.l.replace(/,/g, "")) * position[index]) + "</td>")
                     .append($("<td></td>")
                         .append($deleteButton
                             .click(function() {
@@ -99,15 +100,12 @@ Template.hold.rendered = function() {
         .unbind()
         .click(function () {
             Meteor.call("addHolding", {
-                ticker: $container.find("#postInput").val()
+                ticker: $container.find("#tickerInput").val(),
+                position: $container.find("#positionInput").val()
             });
             $container.find("#postInput").val("");
         }); 
 
-}
-  
-Template.say.posts = function() {
-    return Blog.find({"type": "say"});
 }
 
 Template.post.rendered = function() {

@@ -66,7 +66,7 @@
   <div class="tab-pane row-fluid" id="wwwb_hold">
     <h3>hang on to</h3>
     {{> hold}}
-    {{> createPost}}
+    {{> createPosition}}
   </div>
   <div class="tab-pane row-fluid" id="wwwb_say">
     <h3>blahblahblah</h3>
@@ -98,6 +98,8 @@
       <th>Day Low</th>
       <th>52 Week High</th>
       <th>52 Week Low</th>
+      <th>Position</th>
+      <th>Value</th>
       <th></th>
     </tr>
     {{#each holdings}}
@@ -119,7 +121,22 @@
       <legend>Create Post</legend>
       <label id="postLabel"></label>
       <textarea rows="10" cols="100" id="postInput" placeholder="Type something…"/>
-      <span class="help-block">Example block-level help text here.</span>
+      <button type="submit" class="btn" id="submitPost">Post</button>
+    </fieldset>
+  </form>
+</template>
+
+<template name="createPosition">
+  <form>
+    <fieldset>
+      <legend>Create Position</legend>
+      <label id="postLabel"></label>
+      <label>
+        Ticker <input id="tickerInput" type="text"/>
+      </label>
+      <label>
+        Position <input id="positionInput" type="text"/>
+      </label>
       <button type="submit" class="btn" id="submitPost">Post</button>
     </fieldset>
   </form>
