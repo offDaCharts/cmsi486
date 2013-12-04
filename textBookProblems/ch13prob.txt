@@ -1,0 +1,113 @@
+CH13
+
+problems: 2
+parts: 2
+
+13.8 Consider the database shown in Figure 1.2, whose schema is shown in Figure 2.1. Write a program segment to read a student’s name and print his or her grade point average, assuming that A=4, B=3, C=2, and D=1 points. Use embedded SQLJ with Java as the host language
+
+import java.sql.* ;
+import java.io.* ;
+import sqlj.runtime.* ;
+import sqlj.runtime.ref.* ;
+import oracle.sqlj.runtime.* ;
+
+DefaultContext cntxt
+oracle.getConnection("<url name>", "<user name>", "<password>", true) ; //connect to database with username and password
+DefaultContext.setDefaultContext(cntxt) ;
+
+String name;
+int count = 0,
+    total = 0;
+
+#sql iterator Grades(
+  char grade
+);
+
+Grades grades;
+
+name = readEntry("Enter a Student Name: ") ; 
+try {
+    grades = #sql{ 
+        select g.Grade 
+        into : grade 
+        from GRADE_REPORT g, STUDENT s
+        where s.Name = :name and g.Student_number = s.Student_Number
+    } ;
+} catch (SQLException se) { 
+    System.out.println("student name does not exist: " + name) ;
+    Return ;
+} 
+
+while (grades.next())  {
+    if (grades.grade=="A") {
+        total+=4;
+    } else if (grades.grade=="B") {
+        total+=3;
+    } else if (grades.grade=="C") {
+        total+=2;
+    } else if (grades.grade=="D") {
+        total+=1;
+    }
+    count++;
+}
+
+System.out.println("Average gpa: " + total/count);
+
+
+
+
+
+
+13.10
+Consider the library relational database schema in Figure 4.6. Write a pro- gram segment that retrieves the list of books that became overdue yesterday and that prints the book title and borrower name for each. Use embedded SQL with C as the host language.
+
+import java.sql.* ;
+import java.io.* ;
+import sqlj.runtime.* ;
+import sqlj.runtime.ref.* ;
+import oracle.sqlj.runtime.* ;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+DefaultContext cntxt
+oracle.getConnection("<url name>", "<user name>", "<password>", true) ; //connect to database with username and password
+DefaultContext.setDefaultContext(cntxt) ;
+
+DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+Calendar cal = Calendar.getInstance();
+cal.add(Calendar.DATE, -1);
+
+String yesterday = dateFormat.format(cal.getTime()););
+int count = 0,
+    total = 0;
+
+#sql iterator Books(
+  String bookName,
+  String borrowerName
+);
+
+Books books;
+
+//note: testing fiddle: http://sqlfiddle.com/#!2/b5853/3 (except for date)
+
+try {
+    books = #sql{ 
+        select br.Name, bk.Title
+        into : borrowerName, bookName
+        from BORROWER br, BOOK bk, BOOK_LOANS bl
+        where bl.Book_id=bk.Book_id and bl.Due_date=:yesterday and br.Card_no=bl.Card_no and bl.Book_id=bk.Book_id
+    } ;
+} catch (SQLException se) { 
+    System.out.println("student name does not exist: " + name) ;
+    Return ;
+} 
+
+while (books.next())  {
+    System.out.println("Overdue Book: " + books.bookName);
+    System.out.println("Borrower name: " + books.borrowerName + "\n");
+}
+
+
+
+

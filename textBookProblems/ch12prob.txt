@@ -1,14 +1,77 @@
 CH12
 XML
+problems: 3
+parts: 6
 
 
 12.1 What are the differences between structured, semistructured, and unstructured data?
-    Structured-
-    Semistructure-
-    Unstructured-
-
-
-
-
+    Structured- 
+        represents a strict format (each item in table has same format of others- same attributes)
+    Semistructure- 
+        may have a certain structure but not all data collected will have identical structure.  Additional attributes can be introduced in newer data items at any time, no predefined schema
+    Unstructured- limited indication of type of data- like a text document with some data embedded in it
 
 12.2 Under which of the categories in 12.1 do XML documents fall? What about self-describing data?
+    XML can be either structured or semi-structured
+    self-describing data is semi structured
+
+
+12.10 Specify the following views as queries in XQuery on the company XML schema shown in Figure 12.5.
+
+a. A view that has the department name, manager name, and manager salary for every department.
+
+LET $d := doc(www.company.com/info.xml) 
+FOR $x IN $d/company/department,
+    $y IN $d/company/employee
+WHERE $x/departmentManagerSSN = $y/employeeSSN
+RETURN <res>    $x/departmentName
+                $y/employeeName, $y/employeeSalary </res>
+
+b. A view that has the employee name, supervisor name, and employee salary for each employee who works in the Research department.
+
+LET $d := doc(www.company.com/info.xml) 
+FOR $x IN $d/company/department[departmentName="Research"],
+    $y IN $d/company/employee,
+    $z IN $d/company/employee
+WHERE $y/departmentNumber = $x/departmentNumber AND $y/employeeSupervisorSSN=$z/employeeSSN
+RETURN <res>    $y/employeeName, $y/employeeSalary,
+                $z/employeeName </res>
+
+c. A view that has the project name, controlling department name, number of employees, and total hours worked per week on the project for each project.
+
+LET $d := doc(www.company.com/info.xml) 
+FOR $p IN $d/company/project,
+    $d IN $d/company/department,
+    $e IN $d/company/employee,
+    $w IN $d/company/employeeWorksOn
+WHERE   $p/projectDepartmentNumber = $d.departmentNumber AND
+        $y/departmentNumber = $x/departmentNumber AND 
+        $y/employeeSupervisorSSN=$z/employeeSSN
+RETURN <res>    $p/projectName, 
+                $d/departmentName,
+                {count($e)},
+                {sum($w/hours)} </res>
+
+d. A view that has the project name, controlling department name, number of employees, and total hours worked per week on the project for each project with more than one employee working on it.
+
+LET $d := doc(www.company.com/info.xml) 
+FOR $p IN $d/company/project,
+    $d IN $d/company/department,
+    $e IN $d/company/employee,
+    $w IN $d/company/employeeWorksOn
+WHERE   $p/projectDepartmentNumber = $d.departmentNumber AND
+        $y/departmentNumber = $x/departmentNumber AND 
+        $y/employeeSupervisorSSN=$z/employeeSSN AND
+        count($d/company/employee[projectNumber = $p/projectNumber]) 
+RETURN <res>    $p/projectName, 
+                $d/departmentName,
+                {count($e)},
+                {sum($w/hours)} </res>
+
+
+
+
+
+
+
+

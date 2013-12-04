@@ -1,0 +1,14 @@
+CH17
+
+
+
+17.28 A file has r = 20,000 STUDENT records of fixed length. Each record has the following fields: Name (30 bytes), Ssn (9 bytes), Address (40 bytes), PHONE (10 bytes), Birth_date (8 bytes), Sex (1 byte), Major_dept_code (4 bytes), Minor_dept_code (4 bytes), Class_code (4 bytes, integer), and Degree_program (3 bytes). An additional byte is used as a deletion marker. The file is stored on the disk whose parameters are given in Exercise 17.27.
+
+a. Calculate the record size R in bytes. 
+
+b. Calculate the blocking factor bfr and the number of file blocks b, assum-
+ing an unspanned organization.
+
+c. Calculate the average time it takes to find a record by doing a linear search on the file if (i) the file blocks are stored contiguously, and double buffer- ing is used; (ii) the file blocks are not stored contiguously.
+
+d. Assume that the file is ordered by Ssn; by doing a binary search, calculate the time it takes to search for a record given its Ssn value.
