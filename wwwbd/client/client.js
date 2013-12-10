@@ -118,6 +118,20 @@ Template.post.rendered = function() {
         });
 }
 
+Template.tabContent.rendered = function () {
+    if (location.hash != '') {
+        $('a[href="'+location.hash+'"]').tab('show');
+    } else {
+        location.hash = "#wwwb_buy"
+    }
+
+    $('a[data-toggle="tab"]').on('shown', function (e) {
+        location.hash = $(e.target).attr('href').substr(1);
+        $("body").scrollTop(0);
+    });
+    $("body").scrollTop(0);
+}
+
 
 
 

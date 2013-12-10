@@ -1,4 +1,9 @@
 /* CSS declarations go here */
 .content {
     margin-top: 50px;
+    margin-left: 20px;
+}
+
+.navbar .container {
+    margin-left: 15px;
 }

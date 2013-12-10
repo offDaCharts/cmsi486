@@ -1,14 +1,71 @@
 CH17
+problems: 3
+parts: 12
+
+17.27.
+Consider a disk with the following characteristics (these are not parameters of any particular disk unit): block size B = 512 bytes; interblock gap size G = 128 bytes; number of blocks per track = 20; number of tracks per surface = 400. A disk pack consists of 15 double-sided disks.
+
+a. What is the total capacity of a track, and what is its useful capacity (excluding interblock gaps)?
+    total=(512+128)*20=12800
+    usefule=512*20=10240
+
+b. How many cylinders are there? 
+    400
+
+c. What are the total capacity and the useful capacity of a cylinder? 
+    total: (512+128)*20*15*2=384000
+    useful: 512*20*15*2=307200
+
+d. What are the total capacity and the useful capacity of a disk pack? 
+    total: (512+128)*20*400*15*2=153600000
+    useful: 512*20*400*15*2=122880000
+
+e. Suppose that the disk drive rotates the disk pack at a speed of 2400 rpm
+(revolutions per minute); what are the transfer rate (tr) in bytes/msec and the block transfer time (btt) in msec? What is the average rotational delay (rd) in msec? What is the bulk transfer rate? (See Appendix B.)
+    tr=(12800 bytes)/(60*2400rpm)*1000msec/sec = 88.9bytes/msec
+    btt=B*tr=(512)/88.9= 5.76 msec
+    rd=1/2*(1/2400)*60*1000= 12.5 msec
+
+f. Suppose that the average seek time is 30 msec. How much time does it take (on the average) in msec to locate and transfer a single block, given its block address?
+    btt+rd+st=5.76+12.5+30=48.26msec
 
 
-
-17.28 A file has r = 20,000 STUDENT records of fixed length. Each record has the following fields: Name (30 bytes), Ssn (9 bytes), Address (40 bytes), PHONE (10 bytes), Birth_date (8 bytes), Sex (1 byte), Major_dept_code (4 bytes), Minor_dept_code (4 bytes), Class_code (4 bytes, integer), and Degree_program (3 bytes). An additional byte is used as a deletion marker. The file is stored on the disk whose parameters are given in Exercise 17.27.
+17.28 A file has r = 20,000 STUDENT records of fixed length. Each record has the following fields: Name (30 bytes), Ssn (9 bytes), Address (40 bytes), PHONE (10 bytes), Birth_date (8 bytes), Sex (1 byte), Major_dept_code (4 bytes), Minor_dept_code (4 bytes), Class_code (4 bytes, integer), and Degree_program (3 bytes). An additional byte is used as a deletion marker. The file is stored on the disk whose parameters are given in Exercise 17.27. 
 
 a. Calculate the record size R in bytes. 
+    R = 30+9+40+10+8+1+4+4+4+3+1 = 114 bytes
 
 b. Calculate the blocking factor bfr and the number of file blocks b, assum-
 ing an unspanned organization.
+    Block size B = 512
+    512/114 = 4 R 56
+    bfr = 4
 
-c. Calculate the average time it takes to find a record by doing a linear search on the file if (i) the file blocks are stored contiguously, and double buffer- ing is used; (ii) the file blocks are not stored contiguously.
+c. Calculate the average time it takes to find a record by doing a linear search on the file if 
+    (i) the file blocks are stored contiguously, and double buffer- ing is used; 
+        b/2  (b = num blocks) = 20000/4/2 = 2500
+        avg seek time = 30msec -with double blocking, only needed for 1st one
+        rd = 12.5msec -with double blocking, only needed for 1st one
+
+        avgTime=seek+rd+2500*btt=30+12.5+2500*5.76=14442.5msec
+
+    (ii) the file blocks are not stored contiguously.
+        avgTime=(seek+rd+btt)*2500=120700msec
 
 d. Assume that the file is ordered by Ssn; by doing a binary search, calculate the time it takes to search for a record given its Ssn value.
+    log2(b)*30msec = log2(5000)-12.287
+    avgTime=(seek+rd+btt)*12.287=593msec
+
+17.29 Suppose that only 80 percent of the STUDENT records from Exercise 17.28 have a value for Phone, 85 percent for Major_dept_code, 15 percent for Minor_dept_code, and 90 percent for Degree_program; and suppose that we use a variable-length record file. Each record has a 1-byte field type for each field in the record, plus the 1-byte deletion marker and a 1-byte end-of- record marker. Suppose that we use a spanned record organization, where each block has a 5-byte pointer to the next block (this space is not used for record storage).
+
+a. Calculate the average record length R in bytes. 
+Name (30 bytes), Ssn (9 bytes), Address (40 bytes), 0.8*PHONE (10 bytes), Birth_date (8 bytes), Sex (1 byte), 0.85*Major_dept_code (4 bytes), 0.15*Minor_dept_code (4 bytes), Class_code (4 bytes, integer), and 0.9*Degree_program (3 bytes). An additional byte is used as a deletion marker.
+    R=30+9+40+0.80*10+8+1+0.85*4+0.15*4+4+0.90*3=106.7 bytes
+
+
+
+b. Calculate the number of blocks needed for the file.
+    20000*106.7/512=4167
+    
+
+

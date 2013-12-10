@@ -1,0 +1,12 @@
+CH19
+query processing and optimization
+
+problems: 1
+parts: 1
+
+19.14 A file of 4096 blocks is to be sorted with an available buffer space of 64 blocks. How many passes will be needed in the merge phase of the external sort-merge algorithm?
+    passes: (logdM nR)
+    nR = b/nbB = 4096/64 = 64
+    dm = smaller of nB-1 and nR = 63
+    ceil(log63(64))=2 passes needs
+
