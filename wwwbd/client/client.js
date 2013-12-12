@@ -65,7 +65,10 @@ Template.hold.rendered = function() {
 
     //var result = Holdings.aggregate({$group: {_id:"", tickers: {$push: "$ticker"}}}),
     //    tickers = results[0].tickers;
-    //cold use aggregate functions but meteor's minimongo doesn't support it
+    //cold use aggregate functions but 
+    //meteor uses "minimongo," a version of mongo created for the client side
+    // that doesn't support aggregate functions #SarahMei #whyYouShouldNeverUseMeteor
+
     Holdings.find().forEach(function(hold) {
         tickers.push(hold.ticker);
         position.push(hold.position);
@@ -118,7 +121,8 @@ Template.hold.rendered = function() {
         .click(function () {
             Meteor.call("addHolding", {
                 ticker: $container.find("#tickerInput").val(),
-                position: $container.find("#positionInput").val()
+                position: $container.find("#positionInput").val(),
+                timeStamp: new Date().getTime()
             });
             $container.find("#postInput").val("");
         }); 
