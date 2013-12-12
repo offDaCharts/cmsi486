@@ -1,2 +1,2 @@
 prob: 40
-parts: 82
+parts(a,b,c..): 82
