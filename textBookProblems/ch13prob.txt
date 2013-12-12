@@ -1,7 +1,20 @@
 CH13
 
-problems: 2
-parts: 2
+problems: 3
+parts: 5
+
+13.3 List the three main approaches to database programming. What are the advantages and disadvantages of each approach?
+1. embedding database commands in other language: database queries in original language prefixed by special key
+    -easy to keep natively in same language
+    -but have to write queries manually
+    -and functionality can be limited
+2. using library of database functions: an application programming interface (API) for accessing database from application programs
+    -limited to api funcitonality
+    -most of query code is already done
+3. designing a brand new language: communicate with database via custom made language
+    -much harder to implement
+    -lots of flexibility
+
 
 13.8 Consider the database shown in Figure 1.2, whose schema is shown in Figure 2.1. Write a program segment to read a student’s name and print his or her grade point average, assuming that A=4, B=3, C=2, and D=1 points. Use embedded SQLJ with Java as the host language
 
@@ -52,8 +65,6 @@ while (grades.next())  {
 }
 
 System.out.println("Average gpa: " + total/count);
-
-
 
 
 

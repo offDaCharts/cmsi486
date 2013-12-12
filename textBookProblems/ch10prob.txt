@@ -1,7 +1,7 @@
 CH10
 practical database design and use of UML diagrams
 
-prolbems 4
+prolbems 5
 parts 8
 
 
@@ -71,11 +71,16 @@ e. Any constraints on individual fields
     ssn must be exactly 9 characters
     age must be an integer, not decimals
 
+
 10.24 What naming conventions can you develop to help identify foreign keys more efficiently?
     the foreign key can be the same name and the primary field of the referenced table.  Furthermore, UML based design tools such as rational rose can be used to help create and identify keys in diagrams and schemas
 
-
-
+10.25 What functions do the typical database design tools provide?
+    diagramming: allowing the user to draw conceptual maps of their database
+    design normalization: algorithms are used to create higher level normal form relations from existing relations 
+    provide an esthetic graphical interface to use
+    analytical and hueristic tools to analyze schema
+    trade off analysis to see benefits/drawbacks from changing schema design
 
 
 

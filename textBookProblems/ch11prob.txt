@@ -1,8 +1,11 @@
 CH11
 object and object-relational databases
-problems: 1
-parts: 1
+problems: 2
+parts: 2
 
 11.1 What are the origins of the object-oriented approach?
     Object-oriented databses are derived from object oriented programming languages like smalltalk and c where objects are defined and created but then are only transient object that only exist during program execution. Object-oriented databases make these objects persistent. Instance variables are used to define the the internal state of an object and can even give the object different functions or behaviors that can be performed on it.
 
+11.26 Compare inheritance in the EER model (see Chapter 8) to inheritance in the OO model described in Section 11.1.5.
+    OO model centers around a heirarchy of types and sub types where each sub type can inherit many attributes from one super type.
+    EER models are connected in more of a lattice structure allowing for multiple inheritance where a subclass can inherit different things from multiple parent classes

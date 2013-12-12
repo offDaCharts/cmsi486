@@ -1,71 +1,62 @@
 CH4
-2 problems
-12 parts
+3 problems
+3 parts
+
+4.4 Describe the four clauses in the syntax of a simple SQL retrieval query. Show what type of constructs can be specified in each of the clauses. Which are required and which are optional?
+Select: list of attribute names to be received by the query
+From: the tables that these attributes with be retreived from
+Where: conditional boolean expression to identify certain tuples to be retrieved (optional)
+Order by: attribute list to order the result by (optional)
 
 4.5:
 Consider the database shown in Figure 1.2, whose schema is shown in Figure 2.1. What are the referential integrity constraints that should hold on the schema? Write appropriate SQL DDL statements to define the database.
 
+http://sqlfiddle.com/#!2/d0abd7
+
 create table student
-( Name				varchar(20),
-  Student_number	int,
-  Class				varchar(20),
-  Major				varchar(20),
+( Name        varchar(20),
+  Student_number  int,
+  Class       varchar(20),
+  Major       varchar(20),
   primary key (Student_number)
  );
 
 create table course
-( Course_name		varchar(20),
-  Course_number		varchar(20),
-  Credit_hours		int,
-  Department 		varchar(20),
+( Course_name   varchar(20),
+  Course_number   varchar(20),
+  Credit_hours    int,
+  Department    varchar(20),
   primary key (Course_number)
 );
 
 create table prerequisite
-( Course_number			int,
-  Prerequisite_number	int,
+( Course_number     varchar(20),
+  Prerequisite_number varchar(20),
   foreign key (Course_number) references course(Course_number),
   foreign key (Prerequisite_number) references course(Course_number)
 );
 
 create table section
-( Section_identifier	int,
-  Prerequisite_number	int,
-  foreign key (Course_number) references course(Course_number),
+( Section_identifier  varchar(20),
+  Prerequisite_number varchar(20),
+  primary key (Section_identifier),
   foreign key (Prerequisite_number) references course(Course_number)
 );
 
 create table grade_report
-( Student_number		int,
-  Section_identifier	int,
-  grade    				char(1),
-  foreign key (Student_number) references student(Course_number),
+( Student_number    int,
+  Section_identifier  varchar(20),
+  grade           char(1),
+  foreign key (Student_number) references student(Student_number),
   foreign key (Section_identifier) references section(Section_identifier)
 );
 
 
 
-4.11 Specify the updates of Exercise 3.11 using the SQL update commands.
+4.16 Write SQL statements to create a table EMPLOYEE_BACKUP to back up the
+EMPLOYEE table shown in Figure 3.6.
 
-basic schema built in: http://sqlfiddle.com/#!2/87e73
-
-a. Insert <‘Robert’, ‘F’, ‘Scott’, ‘943775543’, ‘1972-06-21’, ‘2365 Newcastle Rd, Bellaire, TX’, M, 58000, ‘888665555’, 1> into EMPLOYEE.
-
-http://sqlfiddle.com/#!2/3cbbbf/1
-
-b. Insert <‘ProductA’, 4, ‘Bellaire’, 2> into PROJECT. 
-
-
-
-c. Insert <‘Production’, 4, ‘943775543’, ‘2007-10-01’> into DEPARTMENT. 
-d. Insert <‘677678989’, NULL, ‘40.0’> into WORKS_ON. 
-e. Insert<‘453453453’,‘John’,‘M’,‘1990-12-12’,‘spouse’>intoDEPENDENT.
-f.  Delete the WORKS_ON tuples with Essn = ‘333445555’. 
-g. Delete the EMPLOYEE tuple with Ssn = ‘987654321’. 
-h. DeletethePROJECTtuplewithPname=‘ProductX’.
-i. Modify the Mgr_ssn and Mgr_start_date of the DEPARTMENT tuple with Dnumber = 5 to ‘123456789’ and ‘2007-10-01’, respectively.
-j. Modify the Super_ssn attribute of the EMPLOYEE tuple with Ssn = ‘999887777’ to ‘943775543’.
-k. Modify the Hours attribute of the WORKS_ON tuple with Essn = ‘999887777’ and Pno = 10 to ‘5.0’.
-
+select * into  EMPLOYEE_BACKUP 
+from EMPLOYEE
 
 

@@ -1,0 +1,73 @@
+CH14
+2 problems
+2 parts
+
+14.1 Why are scripting languages popular for programming Web applications? Where in the three-tier architecture does a PHP program execute? Where does a JavaScript program execute?
+Scripting languages are popular for web applications because they are suited for manipulating text pages and dynamic html pages
+PHP resides in the middle-tier web server as opposed to DBMS on the bottom teir and js/html in the client teir
+
+14.10 Consider the LIBRARY database schema shown in Figure 4.6. Write PHP code to create the tables of this schema.
+
+$sql = $d->query("CREATE TABLE book
+    (book_id INT,
+    title varchar(20),
+    publisher_name varchar(20),
+    primary key(book_id),
+    foreign key(publisher_name) references publisher(name)"
+);
+$sql = $d->query("CREATE TABLE book_authors
+    (book_id INT,
+    author_name varchar(20),
+    primary key(author_name),
+    foreign key(book_id) references book(book_id)"
+);
+$sql = $d->query("CREATE TABLE publisher
+    (name varchar(20),
+    address varchar(20),
+    phone char(10),
+    primary key(name)"
+);
+$sql = $d->query("CREATE TABLE book_copies
+    (book_id int,
+    branch_id int,
+    no_of_copies int,
+    primary key(book_id, branch_id),
+    foreign key(book_id) references book(book_id),
+    foreign key(branch_id) references library_branch(branch_id)"
+);
+$sql = $d->query("CREATE TABLE book_loans
+    (book_id int,
+    branch_id int,
+    card_no int,
+    date_out date,
+    due_date date,
+    primary key(book_id, branch_id, card_no),
+    foreign key(book_id) references book(book_id),
+    foreign key(branch_id) references library_branch(branch_id),
+    foreign key(card_no) references borrower(card_no)"
+"
+);
+$sql = $d->query("CREATE TABLE library_branch
+    (branch_id int,
+    branch_name varchar(20),
+    address varchar(20),
+    primary key(branch_id)"
+);
+$sql = $d->query("CREATE TABLE borrower
+    (card_no int,
+    name varchar(20),
+    address varchar(20),
+    phone char(10),
+    primary key(card_no)"
+);
+
+
+
+
+
+
+
+
+
+
+

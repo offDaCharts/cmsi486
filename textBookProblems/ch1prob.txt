@@ -1,6 +1,6 @@
 CH1:	
 2 problems
-3 parts
+3 parts(a,b,c...)
 
 1.13:
 Give examples of systems in which it may make sense to use traditional file processing instead of a database approach.

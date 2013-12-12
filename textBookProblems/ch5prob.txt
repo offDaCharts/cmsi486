@@ -1,9 +1,10 @@
 CH5
-//I did a number of problems from this chapter because it included a lot of query practice problems 
-// which I thought was very helpful for practice
 
-5 problems
-18 parts
+7 problems
+24 parts
+
+5.3. Discuss how NULLs are treated in comparison operators in SQL. How are NULLs treated when aggregate functions are applied in an SQL query? How are NULLs treated if they exist in grouping attributes?
+Null can be an unknown value, an unavailable or withheld value, or a not applicable attribute.  Therefore null does not necessarily equal null.  So a comparison value can be either true, false, or unknown.  Aggregate and grouping functions only include non-null values.
 
 5.4
 Discuss how each of the following constructs is used in SQL, and discuss the various options for each construct. Specify what each construct is useful for.
@@ -79,5 +80,44 @@ d. A view that has the project name, controlling department name, number of empl
     http://sqlfiddle.com/#!2/a673ad/1
 
 
+5.9 Consider the following view, DEPT_SUMMARY, defined on the COMPANY database in Figure 3.6:
+
+CREATE VIEW DEPT_SUMMARY (D, C, Total_s, Average_s)
+AS SELECT dno, COUNT(*), SUM(salary), AVG(salary) 
+FROM employee
+GROUP BY dno;
+
+State which of the following queries and updates would be allowed on the view. If a query or update would be allowed, show what the corresponding query or update on the base relations would look like, and give its result when applied to the database in Figure 3.6.
+
+a. 
+SELECT *
+FROM DEPT_SUMMARY;
+http://sqlfiddle.com/#!2/8999e5/2
+allowed
+
+b.
+SELECT D,C
+FROM DEPT_SUMMARY
+WHERE TOTAL_S > 100000;
+http://sqlfiddle.com/#!2/8999e5/3
+allowed
+
+c. 
+SELECT D, AVERAGE_S
+FROM DEPT_SUMMARY
+WHERE C > ( SELECT C FROM DEPT_SUMMARY WHERE D=4);
+http://sqlfiddle.com/#!2/8999e5/4
+allowed
+
+d. 
+UPDATE DEPT_SUMMARY
+SET D=3 
+WHERE D=4;
+This would change all employees who would for dept #4 to dept #3
+
+e. 
+DELETE FROM DEPT_SUMMARY
+WHERE C > 4;
+would remove all departments that have more that 4 people from the view
 
 

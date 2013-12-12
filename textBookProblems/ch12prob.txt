@@ -1,7 +1,7 @@
 CH12
 XML
-problems: 3
-parts: 6
+problems: 4
+parts: 7
 
 
 12.1 What are the differences between structured, semistructured, and unstructured data?
@@ -14,6 +14,10 @@ parts: 6
 12.2 Under which of the categories in 12.1 do XML documents fall? What about self-describing data?
     XML can be either structured or semi-structured
     self-describing data is semi structured
+
+12.4 What is the difference between data-centric and document-centric XML documents?
+    data-centric: small pieces of data that follow of a specific structure. follow a predefined schema
+    document-centric: large amounts of text, (ex: books/articles) no structured data
 
 
 12.10 Specify the following views as queries in XQuery on the company XML schema shown in Figure 12.5.

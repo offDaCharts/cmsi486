@@ -1,2 +1,25 @@
 CH6
-realtional algebra?
+realtional algebra
+
+probs 2
+parts 4
+
+6.1.    List the operations of relational algebra and the purpose of each.
+
+union: joining to sets together
+intersection: the elements that 2 sets have in common
+minus: remove contents of one set from the other
+cross product: created a table from the cross of 2 vector sets
+join: combine related tubles from different sets
+division: S/R, S must contain R, result consists of all S values that are paired with all values in R
+
+6.33
+State whether the following conclusions are true or false: 
+a. NOT (P(x) OR Q(x)) → (NOT (P(x)) AND (NOT (Q(x))) 
+True
+
+b. NOT (∃x) (P(x)) → ∀ x (NOT (P(x)) 
+True
+
+c. (∃x) (P(x)) → ∀ x ((P(x))
+False
